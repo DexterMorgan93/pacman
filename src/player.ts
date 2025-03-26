@@ -8,10 +8,10 @@ interface IPlayer {
 }
 
 export class Player extends Container {
-  private positionX: number;
-  private positionY: number;
-  private velocityX: number;
-  private velocityY: number;
+  positionX: number;
+  positionY: number;
+  public velocityX: number;
+  public velocityY: number;
   private radius = 15;
 
   constructor({ positionX, positionY, velocityX, velocityY }: IPlayer) {
@@ -29,5 +29,10 @@ export class Player extends Container {
     view.fill({ color: "yellow" });
     view.position.set(this.positionX, this.positionY);
     this.addChild(view);
+  }
+
+  handleUpdate() {
+    this.position.x += this.velocityX;
+    this.position.y += this.velocityY;
   }
 }
